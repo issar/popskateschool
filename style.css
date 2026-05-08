@@ -1,0 +1,640 @@
+/* ===== RESET & VARS ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --grad-btn:  linear-gradient(180deg, #D6922A 0%, #D73F2E 100%);
+  --grad-text: linear-gradient(to right, #D73F2E, #D6922A, #1C6E83);
+  --orange: #D6922A;
+  --red:    #D73F2E;
+  --teal:   #1C6E83;
+  --max-w:  1140px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Rubik', sans-serif;
+  background: #fff;
+  color: #000;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 999;
+  background: #25D366;
+  border: 6px solid #5FE85E;
+  border-left: 0;
+  border-radius: 100px;
+  padding: 12px 16px;
+  box-shadow: 0 0 25px 10px rgba(95,232,94,.73);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.whatsapp-float svg { width: 36px; height: 36px; fill: #fff; }
+
+/* ===== SHARED LAYOUT ===== */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-white {
+  display: block;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  font-family: 'Rubik', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 18px 0;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.btn-white:hover { background: var(--grad-btn); color: #fff; border-color: transparent; }
+
+.btn-grad {
+  display: block;
+  background: var(--grad-btn);
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 18px 0;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.btn-grad:hover { background: #fff; color: #000; }
+
+/* ===== SECTION HEADING PATTERN ===== */
+.sec-head {
+  text-align: center;
+  padding: 56px 24px 8px;
+}
+.sec-head .line1 {
+  display: block;
+  font-size: 35px;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.2;
+}
+.sec-head .line2 {
+  display: block;
+  font-size: 49px;
+  font-weight: 900;
+  color: transparent;
+  background-image: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 1.1;
+  margin-top: -6px;
+}
+
+/* ===== CTA ROW ===== */
+.cta-row {
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px;
+}
+.cta-row .btn-grad,
+.cta-row .btn-white { width: 62%; max-width: 560px; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background-image: url('https://popskateschool.co.il/wp-content/uploads/2025/01/%D7%A8%D7%A7%D7%A2.png');
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 40px 0 120px;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://popskateschool.co.il/wp-content/uploads/2025/01/%D7%90%D7%99%D7%99%D7%A8.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: .17;
+  pointer-events: none;
+}
+.hero-shape {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+.hero-shape svg { width: 100%; }
+.hero-shape .shape-fill { fill: #fff; }
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.hero-text h1 {
+  font-size: 54px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+}
+.hero-text .hero-label {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  border-bottom: 3px solid #FF0000;
+  padding-bottom: 3px;
+  line-height: 1;
+}
+.hero-text .hero-sub {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.5;
+}
+.hero-text .hero-btn { width: 100%; }
+.hero-text .hero-location {
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+  border-bottom: 3px solid #FF0000;
+  padding-bottom: 3px;
+}
+
+.hero-video {
+  flex: 1 1 320px;
+}
+.hero-video iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+  border-radius: 10px;
+}
+
+/* ===== WHY SECTION ===== */
+.why-icon-row {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 28px;
+}
+.why-icon-row img { width: 60px; }
+
+/* ===== BENEFITS GRID ===== */
+.benefits-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 8px;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.benefit-card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.benefit-header {
+  background: var(--grad-btn);
+  padding: 16px 12px;
+  text-align: center;
+}
+.benefit-header h3 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+}
+.benefit-icon {
+  padding: 14px 0 0;
+  text-align: center;
+}
+.benefit-icon img { width: 21%; max-width: 72px; }
+.benefit-body {
+  padding: 10px 12px 20px;
+  text-align: center;
+  flex: 1;
+}
+.benefit-body p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.5;
+}
+
+/* ===== MORE-THAN-A-CLUB ===== */
+.more-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.more-card {
+  display: flex;
+  flex-direction: row;
+  background: var(--grad-btn);
+  border-radius: 20px;
+  overflow: hidden;
+  align-items: stretch;
+}
+.more-card-text {
+  flex: 1 1 50%;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.more-card-text h3 {
+  font-size: 34px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+}
+.more-card-text p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6;
+}
+.more-card-img {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.more-card-img img {
+  width: 75%;
+  border-radius: 10px;
+  box-shadow: 0 0 19px 2px rgba(0,0,0,.5);
+  display: block;
+}
+
+/* ===== PROCESS ===== */
+.process-section {
+  background-image: url('https://popskateschool.co.il/wp-content/uploads/2025/01/%D7%A8%D7%A7%D7%A2.png');
+  background-position: center;
+  background-size: cover;
+  padding: 180px 24px 140px;
+  position: relative;
+  margin-top: 16px;
+}
+.process-shape {
+  position: absolute;
+  left: 0; right: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+.process-shape.top { top: 0; }
+.process-shape.bottom { bottom: 0; }
+.process-shape .shape-fill { fill: #fff; }
+
+.process-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  flex-wrap: nowrap;
+}
+.process-step {
+  flex: 1;
+  border: 3px double #fff;
+  border-radius: 10px;
+  padding: 24px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+.process-step::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://popskateschool.co.il/wp-content/uploads/2025/01/pop_skateschool.png');
+  background-size: cover;
+  background-position: center;
+  opacity: .13;
+}
+.step-num {
+  position: relative;
+  z-index: 1;
+  font-size: 90px;
+  font-weight: 900;
+  color: #fff;
+  line-height: .85;
+  opacity: .85;
+}
+.step-title {
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.step-text {
+  position: relative;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.65;
+}
+
+/* ===== INSTRUCTOR ===== */
+.instructor-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 40px 24px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.instructor-photo { flex: 1 1 300px; }
+.instructor-photo img { width: 84%; display: block; border-radius: 12px; }
+
+.instructor-info { flex: 1 1 300px; }
+.instructor-info h2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #000;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.instructor-info p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #000;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.cert-label {
+  font-size: 20px;
+  font-weight: 900;
+  color: #000;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.instructor-info .cert-img {
+  width: 37%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ===== INVITE SECTION ===== */
+.invite-section {
+  text-align: center;
+  padding: 40px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.invite-section h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #000;
+}
+.invite-grad {
+  font-size: 22px;
+  font-weight: 900;
+  color: transparent;
+  background-image: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 1.4;
+}
+.invite-fill {
+  font-size: 22px;
+  font-weight: 900;
+  color: #000;
+}
+.arrow-icon svg {
+  width: 48px;
+  height: 48px;
+  fill: #000;
+  margin: 4px 0;
+}
+.invite-section .btn-grad { width: 62%; max-width: 560px; }
+
+/* ===== SOCIAL SECTION ===== */
+.social-section {
+  text-align: center;
+  padding: 16px 24px 40px;
+}
+.social-section h2 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 24px;
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.social-icons a { color: #000; text-decoration: none; }
+.social-icons a svg { width: 54px; height: 54px; fill: #000; transition: fill .2s; display: block; }
+.social-icons a:hover svg { fill: var(--red); }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 20px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #eee;
+}
+footer .footer-name { font-size: 14px; color: #7A7A7A; }
+footer a.privacy { font-size: 16px; font-weight: 600; color: #707272; text-decoration: underline; }
+footer .builder-img { width: 220px; display: block; }
+
+/* ===== POPUP ===== */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.72);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.popup-overlay.open { display: flex; }
+
+.popup {
+  background: #fff;
+  border-radius: 14px;
+  padding: 40px 36px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  animation: popIn .28s ease;
+}
+@keyframes popIn {
+  from { transform: translateY(32px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.popup-close {
+  position: absolute;
+  top: 14px; left: 18px;
+  font-size: 24px;
+  background: none; border: none;
+  cursor: pointer; color: #888;
+  line-height: 1;
+}
+.popup-close:hover { color: #000; }
+.popup h2 {
+  font-size: 30px; font-weight: 900;
+  text-align: center; color: #000;
+  margin-bottom: 2px;
+}
+.popup h3 {
+  font-size: 22px; font-weight: 600;
+  text-align: center; color: #000;
+  margin-bottom: 24px;
+}
+.form-row { display: flex; gap: 12px; }
+.form-row .fg { flex: 1; }
+.fg { margin-bottom: 14px; }
+.fg input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  direction: rtl;
+  outline: none;
+  transition: border-color .2s;
+}
+.fg input:focus { border-color: var(--orange); }
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.form-check input[type="checkbox"] {
+  width: 17px; height: 17px;
+  margin-top: 3px;
+  accent-color: var(--red);
+  flex-shrink: 0; cursor: pointer;
+}
+.form-check label { font-size: 13px; color: #444; cursor: pointer; line-height: 1.5; }
+.btn-submit {
+  width: 100%;
+  background: var(--grad-btn);
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 18px 0;
+  font-family: 'Rubik', sans-serif;
+  font-size: 20px; font-weight: 900;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.btn-submit:hover { background: #fff; color: #000; }
+.btn-submit.success { background: linear-gradient(180deg,#22c55e,#16a34a); border-color: transparent; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .more-wrap { padding: 0 24px; }
+}
+
+@media (max-width: 767px) {
+  .hero { min-height: auto; padding: 32px 0 110px; }
+  .hero-text h1 { font-size: 32px; }
+  .hero-text .hero-label { font-size: 20px; }
+  .hero-text .hero-sub { font-size: 16px; }
+  .hero-video { display: none; }
+
+  .sec-head { padding: 40px 24px 4px; }
+  .sec-head .line1 { font-size: 30px; }
+  .sec-head .line2 { font-size: 38px; }
+
+  .benefits-grid { grid-template-columns: 1fr; }
+  .benefit-header h3 { font-size: 22px; }
+  .benefit-icon img { width: 30%; }
+  .benefit-body p { font-size: 17px; }
+
+  .more-wrap { padding: 0 16px; gap: 20px; }
+  .more-card { flex-direction: column; }
+  .more-card-text h3 { font-size: 26px; }
+  .more-card-text p { font-size: 17px; }
+  .more-card-img img { width: 90%; }
+
+  .cta-row .btn-grad,
+  .cta-row .btn-white { width: 90%; }
+
+  .process-section { padding: 100px 16px 80px; }
+  .process-inner { flex-direction: column; gap: 32px; }
+  .step-num { font-size: 72px; }
+  .step-title { font-size: 22px; }
+  .step-text { font-size: 16px; }
+
+  .instructor-wrap { flex-direction: column; align-items: center; }
+  .instructor-photo img { width: 88%; }
+  .instructor-info .cert-img { width: 52%; }
+
+  .invite-section .btn-grad { width: 90%; }
+
+  .social-icons a svg { width: 48px; height: 48px; }
+  .social-icons { gap: 32px; }
+
+  footer .builder-img { width: 160px; }
+}
