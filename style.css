@@ -202,6 +202,13 @@ body {
   border: none;
   border-radius: 10px;
 }
+.hero-video-mobile { display: none; }
+.hero-video-mobile iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+  border-radius: 10px;
+}
 
 /* ===== WHY SECTION ===== */
 .why-icon-row {
@@ -602,6 +609,7 @@ footer .builder-img { width: 220px; display: block; }
   .hero-text .hero-label { font-size: 20px; }
   .hero-text .hero-sub { font-size: 16px; }
   .hero-video { display: none; }
+  .hero-video-mobile { display: block; width: 100%; }
 
   .sec-head { padding: 40px 24px 4px; }
   .sec-head .line1 { font-size: 30px; }
