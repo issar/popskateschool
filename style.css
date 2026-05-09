@@ -20,24 +20,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== WHATSAPP FLOAT ===== */
-.whatsapp-float {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  z-index: 999;
-  background: #25D366;
-  border: 6px solid #5FE85E;
-  border-left: 0;
-  border-radius: 100px;
-  padding: 12px 16px;
-  box-shadow: 0 0 25px 10px rgba(95,232,94,.73);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-.whatsapp-float svg { width: 36px; height: 36px; fill: #fff; }
 
 /* ===== SHARED LAYOUT ===== */
 .container {
@@ -117,14 +99,15 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
   background-image: url('https://popskateschool.co.il/wp-content/uploads/2025/01/%D7%A8%D7%A7%D7%A2.png');
   background-position: center center;
   background-size: cover;
   display: flex;
   align-items: center;
-  padding: 40px 0 120px;
+  padding: 80px 0 80px;
   position: relative;
+  border-radius: 0 0 60px 60px;
+  overflow: hidden;
 }
 .hero::before {
   content: '';
@@ -136,14 +119,7 @@ body {
   opacity: .17;
   pointer-events: none;
 }
-.hero-shape {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  line-height: 0;
-  pointer-events: none;
-}
-.hero-shape svg { width: 100%; }
-.hero-shape .shape-fill { fill: #fff; }
+.hero-shape { display: none; }
 
 .hero-inner {
   position: relative;
@@ -185,7 +161,7 @@ body {
   line-height: 1.5;
 }
 .hero-text .hero-btn { width: 100%; }
-.hero-text .hero-location {
+.hero-location {
   font-size: 20px;
   font-weight: 900;
   color: #fff;
@@ -196,14 +172,8 @@ body {
 .hero-video {
   flex: 1 1 320px;
 }
+.hero-cta-mobile { display: none; }
 .hero-video iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border: none;
-  border-radius: 10px;
-}
-.hero-video-mobile { display: none; }
-.hero-video-mobile iframe {
   width: 100%;
   aspect-ratio: 16/9;
   border: none;
@@ -325,16 +295,17 @@ body {
   background-size: cover;
   padding: 180px 24px 140px;
   position: relative;
-  margin-top: 16px;
 }
 .process-shape {
   position: absolute;
   left: 0; right: 0;
   line-height: 0;
+  overflow: hidden;
   pointer-events: none;
 }
-.process-shape.top { top: 0; }
-.process-shape.bottom { bottom: 0; }
+.process-shape.top { top: -2px; }
+.process-shape.bottom { bottom: -2px; }
+.process-shape svg { width: 100%; display: block; height: 120px; }
 .process-shape .shape-fill { fill: #fff; }
 
 .process-inner {
@@ -604,12 +575,13 @@ footer .builder-img { width: 220px; display: block; }
 }
 
 @media (max-width: 767px) {
-  .hero { min-height: auto; padding: 32px 0 110px; }
+  .hero { padding: 32px 0 40px; border-radius: 0 0 32px 32px; }
   .hero-text h1 { font-size: 32px; }
   .hero-text .hero-label { font-size: 20px; }
   .hero-text .hero-sub { font-size: 16px; }
-  .hero-video { display: none; }
-  .hero-video-mobile { display: block; width: 100%; }
+  .hero-video { flex: 1 1 100%; }
+  .hero-btn-desktop, .hero-location-desktop { display: none; }
+  .hero-cta-mobile { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; flex: 1 1 100%; }
 
   .sec-head { padding: 40px 24px 4px; }
   .sec-head .line1 { font-size: 30px; }
@@ -629,7 +601,8 @@ footer .builder-img { width: 220px; display: block; }
   .cta-row .btn-grad,
   .cta-row .btn-white { width: 90%; }
 
-  .process-section { padding: 100px 16px 80px; }
+  .process-section { padding: 110px 16px 90px; }
+  .process-shape svg { height: 70px; }
   .process-inner { flex-direction: column; gap: 32px; }
   .step-num { font-size: 72px; }
   .step-title { font-size: 22px; }
