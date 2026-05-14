@@ -38,6 +38,7 @@ document.getElementById('popup-form').addEventListener('submit', function(e) {
     })
   })
   .finally(function() {
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
     btn.textContent = '✓ נשלח!';
     btn.classList.add('success');
     setTimeout(function() {
