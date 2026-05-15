@@ -425,29 +425,13 @@
       </div>
 
       <div class="fg">
-        <label>איזה יום הכי מתאים לכם?</label>
-        <div class="level-options">
-          <label class="level-opt">
-            <input type="radio" name="preferred_day" value="Sunday" required />
-            <div><span class="opt-title">ראשון</span></div>
-          </label>
-          <label class="level-opt">
-            <input type="radio" name="preferred_day" value="Tuesday" />
-            <div><span class="opt-title">שלישי</span></div>
-          </label>
-          <label class="level-opt">
-            <input type="radio" name="preferred_day" value="Thursday" />
-            <div><span class="opt-title">חמישי</span></div>
-          </label>
-        </div>
-      </div>
-
-      <div class="fg">
-        <label>ימים נוספים שיכולים להתאים? (אופציונלי)</label>
+        <label>אילו ימים יכולים להתאים לכם?</label>
         <div class="days-grid">
-          <label class="day-opt"><input type="checkbox" name="optional_days" value="Sunday" /> ראשון</label>
-          <label class="day-opt"><input type="checkbox" name="optional_days" value="Tuesday" /> שלישי</label>
-          <label class="day-opt"><input type="checkbox" name="optional_days" value="Thursday" /> חמישי</label>
+          <label class="day-opt"><input type="checkbox" name="available_days" value="Sunday" /> ראשון</label>
+          <label class="day-opt"><input type="checkbox" name="available_days" value="Monday" /> שני</label>
+          <label class="day-opt"><input type="checkbox" name="available_days" value="Tuesday" /> שלישי</label>
+          <label class="day-opt"><input type="checkbox" name="available_days" value="Wednesday" /> רביעי</label>
+          <label class="day-opt"><input type="checkbox" name="available_days" value="Thursday" /> חמישי</label>
         </div>
       </div>
 
@@ -635,26 +619,24 @@ document.getElementById('screening-form').addEventListener('submit', function(e)
   e.preventDefault();
   var btn = this.querySelector('.btn-submit');
 
-  var childName = (document.getElementById('field-child-name') || {}).value || '';
-  var age       = (document.getElementById('field-age') || {}).value || '';
-  var level     = (this.querySelector('input[name="level"]:checked') || {}).value || '';
-  var prefDay   = (this.querySelector('input[name="preferred_day"]:checked') || {}).value || '';
-  var optDays   = Array.from(this.querySelectorAll('input[name="optional_days"]:checked'))
-                    .map(function(c){ return c.value; }).join(',');
-  var notes     = (document.getElementById('field-notes') || {}).value || '';
+  var childName     = (document.getElementById('field-child-name') || {}).value || '';
+  var age           = (document.getElementById('field-age') || {}).value || '';
+  var level         = (this.querySelector('input[name="level"]:checked') || {}).value || '';
+  var availableDays = Array.from(this.querySelectorAll('input[name="available_days"]:checked'))
+                        .map(function(c){ return c.value; }).join(',');
+  var notes         = (document.getElementById('field-notes') || {}).value || '';
 
   var payload = {
-    type:          'survey',
-    name:          _name,
-    phone:         _phone,
-    email:         _email,
-    child_name:    childName,
-    age:           age,
-    level:         level,
-    preferred_day: prefDay,
-    optional_days: optDays,
-    notes:         notes,
-    date:          new Date().toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' })
+    type:           'survey',
+    name:           _name,
+    phone:          _phone,
+    email:          _email,
+    child_name:     childName,
+    age:            age,
+    level:          level,
+    available_days: availableDays,
+    notes:          notes,
+    date:           new Date().toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' })
   };
 
   if (!WEBHOOK_URL || WEBHOOK_URL === 'PASTE_WEBHOOK_URL_HERE') {
