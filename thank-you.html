@@ -183,6 +183,7 @@
       transition: border-color .2s;
     }
     .source-input:focus { border-color: var(--orange); }
+    textarea.source-input { resize: vertical; min-height: 80px; }
 
     /* SUBMIT */
     .btn-submit {
@@ -382,12 +383,17 @@
     <form id="screening-form">
 
       <div class="fg">
-        <label>גיל הילד/ה</label>
-        <select required>
+        <label for="field-child-name">שם הילד/ה</label>
+        <input type="text" id="field-child-name" class="source-input" placeholder="שם פרטי" required />
+      </div>
+
+      <div class="fg">
+        <label for="field-age">גיל הילד/ה</label>
+        <select id="field-age" required>
           <option value="" disabled selected>בחרו גיל</option>
-          <option>6</option><option>7</option><option>8</option><option>9</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
           <option>10</option><option>11</option><option>12</option><option>13</option>
-          <option>14</option><option>15</option><option>16</option><option>17</option><option>18+</option>
+          <option>14</option><option>15</option>
         </select>
       </div>
 
@@ -395,21 +401,21 @@
         <label>מה הרמה של הילד/ה?</label>
         <div class="level-options">
           <label class="level-opt">
-            <input type="radio" name="level" value="beginner" required />
+            <input type="radio" name="level" value="Beginner" required />
             <div>
               <span class="opt-title">מתחיל מוחלט</span>
               <span class="opt-desc">מעולם לא עמד על סקייטבורד</span>
             </div>
           </label>
           <label class="level-opt">
-            <input type="radio" name="level" value="some-experience" />
+            <input type="radio" name="level" value="Intermediate" />
             <div>
               <span class="opt-title">יש קצת ניסיון</span>
               <span class="opt-desc">יכול לעמוד ולנסוע קצת, אפילו עשה כמה ירידות קטנות</span>
             </div>
           </label>
           <label class="level-opt">
-            <input type="radio" name="level" value="intermediate" />
+            <input type="radio" name="level" value="Advanced" />
             <div>
               <span class="opt-title">נוסע בנוחות</span>
               <span class="opt-desc">נוסע טוב, רוצה ללמוד טריקים ולהתקדם</span>
@@ -419,19 +425,35 @@
       </div>
 
       <div class="fg">
-        <label>אילו ימים מתאימים לכם? (אפשר לסמן כמה)</label>
-        <div class="days-grid">
-          <label class="day-opt"><input type="checkbox" value="א" /> ראשון</label>
-          <label class="day-opt"><input type="checkbox" value="ב" /> שני</label>
-          <label class="day-opt"><input type="checkbox" value="ג" /> שלישי</label>
-          <label class="day-opt"><input type="checkbox" value="ד" /> רביעי</label>
-          <label class="day-opt"><input type="checkbox" value="ה" /> חמישי</label>
+        <label>איזה יום הכי מתאים לכם?</label>
+        <div class="level-options">
+          <label class="level-opt">
+            <input type="radio" name="preferred_day" value="Sunday" required />
+            <div><span class="opt-title">ראשון</span></div>
+          </label>
+          <label class="level-opt">
+            <input type="radio" name="preferred_day" value="Tuesday" />
+            <div><span class="opt-title">שלישי</span></div>
+          </label>
+          <label class="level-opt">
+            <input type="radio" name="preferred_day" value="Thursday" />
+            <div><span class="opt-title">חמישי</span></div>
+          </label>
         </div>
       </div>
 
       <div class="fg">
-        <label>איך שמעת עלינו?</label>
-        <input type="text" id="field-source" class="source-input" placeholder="למשל: אינסטגרם, חבר המליץ, גוגל..." />
+        <label>ימים נוספים שיכולים להתאים? (אופציונלי)</label>
+        <div class="days-grid">
+          <label class="day-opt"><input type="checkbox" name="optional_days" value="Sunday" /> ראשון</label>
+          <label class="day-opt"><input type="checkbox" name="optional_days" value="Tuesday" /> שלישי</label>
+          <label class="day-opt"><input type="checkbox" name="optional_days" value="Thursday" /> חמישי</label>
+        </div>
+      </div>
+
+      <div class="fg">
+        <label for="field-notes">הערות (אופציונלי)</label>
+        <textarea id="field-notes" class="source-input" rows="3" placeholder="כל מידע נוסף שיעזור לנו להתאים את הקבוצה המושלמת..."></textarea>
       </div>
 
       <button type="submit" class="btn-submit">שליחה - אחזור אליכם בקרוב!</button>
@@ -613,21 +635,26 @@ document.getElementById('screening-form').addEventListener('submit', function(e)
   e.preventDefault();
   var btn = this.querySelector('.btn-submit');
 
-  var age    = (this.querySelector('select') || {}).value || '';
-  var level  = (this.querySelector('input[name="level"]:checked') || {}).value || '';
-  var days   = Array.from(this.querySelectorAll('input[type="checkbox"]:checked')).map(function(c){ return c.value; }).join(', ');
-  var source = (document.getElementById('field-source') || {}).value || '';
+  var childName = (document.getElementById('field-child-name') || {}).value || '';
+  var age       = (document.getElementById('field-age') || {}).value || '';
+  var level     = (this.querySelector('input[name="level"]:checked') || {}).value || '';
+  var prefDay   = (this.querySelector('input[name="preferred_day"]:checked') || {}).value || '';
+  var optDays   = Array.from(this.querySelectorAll('input[name="optional_days"]:checked'))
+                    .map(function(c){ return c.value; }).join(',');
+  var notes     = (document.getElementById('field-notes') || {}).value || '';
 
   var payload = {
-    type:   'survey',
-    name:   _name,
-    phone:  _phone,
-    email:  _email,
-    age:    age,
-    level:  level,
-    days:   days,
-    source: source,
-    date:   new Date().toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' })
+    type:          'survey',
+    name:          _name,
+    phone:         _phone,
+    email:         _email,
+    child_name:    childName,
+    age:           age,
+    level:         level,
+    preferred_day: prefDay,
+    optional_days: optDays,
+    notes:         notes,
+    date:          new Date().toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' })
   };
 
   if (!WEBHOOK_URL || WEBHOOK_URL === 'PASTE_WEBHOOK_URL_HERE') {
