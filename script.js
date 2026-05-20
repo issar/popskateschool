@@ -1,4 +1,4 @@
-var WEBHOOK_URL = 'https://hook.eu2.make.com/p9wcmqo7me42pkzl1ipixrud7k6hgoks';
+var WEBHOOK_URL = 'https://hook.eu2.make.com/5mvelr1e73kec6h6y1v8rotllhumx11v';
 
 function openPopup() {
   document.getElementById('popup').classList.add('open');
