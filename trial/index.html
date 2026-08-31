@@ -574,12 +574,13 @@
 // TRIAL CTA TRACKING
 (function() {
   window.dataLayer = window.dataLayer || [];
+  var DATE_MAP = { '15-09': '2026-09-15', '22-09': '2026-09-22' };
   document.querySelectorAll('[data-trial-date]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var d = btn.getAttribute('data-trial-date');
-      var eventName = d === '15-09' ? 'trial_15_09_click' : 'trial_22_09_click';
-      dataLayer.push({ event: eventName });
-      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: 'trial_' + d });
+      var trialDate = DATE_MAP[d];
+      dataLayer.push({ event: 'trial_registration_click', trial_date: trialDate });
+      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { trial_date: trialDate });
     });
   });
 })();
